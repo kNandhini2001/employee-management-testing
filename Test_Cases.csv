@@ -1,0 +1,51 @@
+﻿Test ID,Requirement,Module,Scenario,Preconditions,Steps,Expected result,Priority,Suite,Status
+TC-001,R01,Login,Valid credentials,Open login page,Enter active user credentials; submit,Dashboard opens,High,Smoke; Regression,Not Run
+TC-002,R01,Login,Wrong password,Open login page,Enter valid username and wrong password; submit,Access denied,High,Functional; Regression,Not Run
+TC-003,R01,Login,Unknown user,Open login page,Enter unknown username; submit,Access denied,High,Functional; Regression,Not Run
+TC-004,R01,Login,Blank username,Open login page,Leave username blank; enter password; submit,Required message appears,Medium,Functional; Regression,Not Run
+TC-005,R01,Login,Blank password,Open login page,Enter username; leave password blank; submit,Required message appears,Medium,Functional; Regression,Not Run
+TC-006,R01,Login,Inactive user,Open login page,Submit inactive account credentials,Access denied,Medium,Functional; Regression,Not Run
+TC-007,R01,Login,Password masking,Open login page,Type password,Characters are masked,Medium,Functional; Regression,Not Run
+TC-008,R01,Login,Logout,Open login page,Sign in; select logout,Login page opens,Medium,Functional; Regression,Not Run
+TC-009,R01,Login,Protected page,Open login page,"After logout, open dashboard URL",Redirect to login,High,Functional; Regression,Not Run
+TC-010,R01,Login,Role access,Open login page,Sign in as employee; open admin page,Access denied,Medium,Functional; Regression,Not Run
+TC-011,R02,Employee registration,Valid employee,Sign in as HR administrator; open Add Employee,"Enter E101, Asha Rao, HR; save",Employee created,High,Smoke; Regression,Not Run
+TC-012,R02,Employee registration,Duplicate ID,Sign in as HR administrator; open Add Employee,Enter existing E100; save,Duplicate rejected,High,Functional; Regression,Not Run
+TC-013,R02,Employee registration,Missing ID,Sign in as HR administrator; open Add Employee,Leave ID blank; save,Required message appears,High,Functional; Regression,Not Run
+TC-014,R02,Employee registration,Missing name,Sign in as HR administrator; open Add Employee,Leave name blank; save,Required message appears,Medium,Functional; Regression,Not Run
+TC-015,R02,Employee registration,Invalid email,Sign in as HR administrator; open Add Employee,Enter abc as email; save,Invalid email rejected,Medium,Functional; Regression,Not Run
+TC-016,R02,Employee registration,Valid email,Sign in as HR administrator; open Add Employee,Enter asha@example.test; save,Email accepted,Medium,Functional; Regression,Not Run
+TC-017,R02,Employee registration,Name minimum,Sign in as HR administrator; open Add Employee,Enter A; save,Name accepted,Medium,Boundary; Regression,Not Run
+TC-018,R02,Employee registration,Name maximum,Sign in as HR administrator; open Add Employee,Enter 50 letters; save,Name accepted,Medium,Boundary; Regression,Not Run
+TC-019,R02,Employee registration,Name over limit,Sign in as HR administrator; open Add Employee,Enter 51 letters; save,Name rejected,High,Boundary; Regression,Not Run
+TC-020,R02,Employee registration,Cancel creation,Sign in as HR administrator; open Add Employee,Enter valid details; cancel,No employee created,Medium,Functional; Regression,Not Run
+TC-021,R03,Employee search,Exact ID,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search E100,Only E100 appears,High,Smoke; Regression,Not Run
+TC-022,R03,Employee search,Exact name,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search Asha Rao,E100 appears,High,Functional; Regression,Not Run
+TC-023,R03,Employee search,Partial name,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search Asha,E100 appears,High,Functional; Regression,Not Run
+TC-024,R03,Employee search,Case insensitive,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search asha,E100 appears,Medium,Functional; Regression,Not Run
+TC-025,R03,Employee search,Unknown ID,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search E999,No results message,Medium,Functional; Regression,Not Run
+TC-026,R03,Employee search,Department,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Filter HR,Only HR employees appear,Medium,Functional; Regression,Not Run
+TC-027,R03,Employee search,Combined filters,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search Asha; filter IT,No results,Medium,Functional; Regression,Not Run
+TC-028,R03,Employee search,Clear filters,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Apply HR filter; clear,All employees appear,Medium,Functional; Regression,Not Run
+TC-029,R03,Employee search,Blank search,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Submit empty search,All employees appear,High,Functional; Regression,Not Run
+TC-030,R03,Employee search,Open result,Sign in as HR; open directory containing E100 Asha Rao in HR and E102 Ravi Das in IT,Search E102; open result,Ravi Das profile opens,Medium,Functional; Regression,Not Run
+TC-031,R04,Profile management,Update phone,Sign in as HR; open existing E100 profile,Enter 9876543210; save,Phone persists,High,Smoke; Regression,Not Run
+TC-032,R04,Profile management,Invalid phone,Sign in as HR; open existing E100 profile,Enter abc; save,Validation error,High,Functional; Regression,Not Run
+TC-033,R04,Profile management,Update email,Sign in as HR; open existing E100 profile,Enter new@example.test; save,Email persists,High,Functional; Regression,Not Run
+TC-034,R04,Profile management,Invalid email,Sign in as HR; open existing E100 profile,Enter new@; save,Validation error,Medium,Functional; Regression,Not Run
+TC-035,R04,Profile management,Change department,Sign in as HR; open existing E100 profile,Select IT; save,Department becomes IT,Medium,Functional; Regression,Not Run
+TC-036,R04,Profile management,Cancel edit,Sign in as HR; open existing E100 profile,Change name; cancel,Original name retained,Medium,Functional; Regression,Not Run
+TC-037,R04,Profile management,Required name,Sign in as HR; open existing E100 profile,Clear name; save,Required message appears,Medium,Functional; Regression,Not Run
+TC-038,R04,Profile management,Immutable ID,Sign in as HR; open existing E100 profile,Attempt to edit employee ID,ID cannot be changed,Medium,Functional; Regression,Not Run
+TC-039,R04,Profile management,Persistence,Sign in as HR; open existing E100 profile,Save valid change; reload profile,Saved change remains,High,Functional; Regression,Not Run
+TC-040,R04,Profile management,Employee permissions,Sign in as HR; open existing E100 profile,Sign in as employee; attempt to edit department,Change denied,Medium,Functional; Regression,Not Run
+TC-041,R05,Leave management,Valid leave,Sign in as employee E100 with 5 available leave days; open leave form,Request one future working day; submit,Pending request created,High,Smoke; Regression,Not Run
+TC-042,R05,Leave management,Missing start,Sign in as employee E100 with 5 available leave days; open leave form,Leave start date empty; submit,Required message appears,High,Functional; Regression,Not Run
+TC-043,R05,Leave management,Missing end,Sign in as employee E100 with 5 available leave days; open leave form,Leave end date empty; submit,Required message appears,High,Functional; Regression,Not Run
+TC-044,R05,Leave management,Reversed dates,Sign in as employee E100 with 5 available leave days; open leave form,Set end before start; submit,Date range rejected,Medium,Functional; Regression,Not Run
+TC-045,R05,Leave management,Past date,Sign in as employee E100 with 5 available leave days; open leave form,Request yesterday; submit,Request rejected,Medium,Functional; Regression,Not Run
+TC-046,R05,Leave management,Exact balance,Sign in as employee E100 with 5 available leave days; open leave form,Request 5 future working days; submit,Pending request created,Medium,Boundary; Regression,Not Run
+TC-047,R05,Leave management,Excess balance,Sign in as employee E100 with 5 available leave days; open leave form,Request 6 future working days; submit,Request rejected,Medium,Boundary; Regression,Not Run
+TC-048,R05,Leave management,Overlap,Sign in as employee E100 with 5 available leave days; open leave form,Submit dates overlapping existing pending request,Overlap rejected,Medium,Functional; Regression,Not Run
+TC-049,R05,Leave management,Approval,Sign in as employee E100 with 5 available leave days; open leave form,As HR approve a pending one-day request,Status Approved; balance decreases by 1,High,Functional; Regression,Not Run
+TC-050,R05,Leave management,Rejection,Sign in as employee E100 with 5 available leave days; open leave form,As HR reject a pending one-day request,Status Rejected; balance unchanged,Medium,Functional; Regression,Not Run
